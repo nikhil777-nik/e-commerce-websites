@@ -1,5 +1,5 @@
 
-
+import {v2 as cloudinary} from "cloudinary"
 // funtion for add product 
 
 const addProducts =async (req,res)=>{
@@ -11,10 +11,12 @@ const addProducts =async (req,res)=>{
         const image3=req.files.image3 && req.files.image3[0]
         const image4=req.files.image4 && req.files.image4[0]
 
-         const images =[image1,image3,image3,image4].filter((item)=>item !== undefined)
+         const images =[image1,image2,image3,image4].filter((item)=>item !== undefined)
 
          let imageurl = await Promise.all(
-            images,Map(async)
+            images.map(async(item)=>{
+                let result = await cloudinary.uploader.upload(item.path)
+            })
          )
 
         console.log(name,description,price,category,subCategory,sizes,bestseller);
@@ -50,4 +52,6 @@ const singleProduct=async(req,res)=>{
 }
 
 export {addProducts,listProducts,removeProducts,singleProduct}
+
+
 

@@ -31,7 +31,7 @@ app.get('/',(req,res)=>{
     res.send("API WORKING")
 })
 
-app.listen(port,()=> console.log('server started on PORT :' + port))
+app.listen(port,()=> console.log('Server started on PORT :' + port))
 
 
 
